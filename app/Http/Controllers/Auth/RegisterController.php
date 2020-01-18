@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'is_supplier' => ['required', 'digits_between:0,1']
         ]);
     }
 
@@ -67,6 +68,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'is_supplier' => $data['is_supplier'],
             'password' => Hash::make($data['password']),
         ]);
     }
